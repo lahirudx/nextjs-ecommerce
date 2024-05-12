@@ -4,6 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
+  // delay 3 seconds
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
   const products = await prisma.product.findMany({
     orderBy: { createdAt: "desc" },
   });
@@ -15,7 +18,7 @@ export default async function Home() {
           <Image
             src={products[0].imageUrl}
             alt={products[0].name}
-            width={400}
+            width={800}
             height={400}
             priority
             className="w-full max-w-sm rounded-lg object-cover shadow-2xl"
